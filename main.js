@@ -1,3 +1,12 @@
+// Ce code affiche les erreurs directement sur ton écran d'iPad
+window.onerror = function(msg, url, line) {
+    alert("ERREUR : " + msg + "\nLigne : " + line);
+};
+
+// Redirige les logs de la console vers des alertes pour tester
+console.log = function(msg) {
+    alert("LOG : " + msg);
+};
 window.onload = function() {
     const btn = document.getElementById("start");
     
