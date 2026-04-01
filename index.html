@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>WebBox v1.0 - macOS Emulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="boot-screen">
+        <div class="window">
+            <div class="title-bar">WebBox Manager</div>
+            <div class="content">
+                <button id="start">Lancer la Machine Virtuelle</button>
+                <p id="info">Mémoire allouée : 1024MB | Stockage : recovery.iso</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-container" style="display:none;">
+        <canvas id="v86-canvas"></canvas>
+        <div id="v86-terminal"></div>
+    </div>
+
+    <script src="https://copy.sh/v86/build/libv86.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
