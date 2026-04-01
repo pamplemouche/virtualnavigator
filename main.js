@@ -15,9 +15,9 @@ window.onload = function() {
         
         const emulator = new V86Starter({
             // On utilise les liens officiels pour être SÛR que ça charge
-            wasm_path: "https://copy.sh/v86/build/v86.wasm",
-            bios: { url: "https://copy.sh/v86/bios/seabios.bin" },
-            vga_bios: { url: "https://copy.sh/v86/bios/vgabios.bin" },
+            wasm_path: "./build/v86.wasm",
+            bios: { url: "./bios/seabios.bin" },
+            vga_bios: { url: "./bios/vgabios.bin" },
             
             // On garde ton ISO locale (vérifie bien le nom du fichier !)
             cdrom: { url: "./images/tinycore.iso", async: true },
