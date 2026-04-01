@@ -1,25 +1,25 @@
-// Enregistrement du Service Worker pour débloquer la puissance du navigateur
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js');
-}
-
-async function startVM() {
-    document.getElementById('boot-screen').style.display = 'none';
-    document.getElementById('screen-container').style.display = 'block';
-
-    // Remplace temporairement ton bloc emulator par celui-ci pour tester
-const emulator = new V86Starter({
-    wasm_path: "https://copy.sh/v86/build/v86.wasm",
-    memory_size: 256 * 1024 * 1024, // Tiny Core n'a besoin que de 256MB
-    bios: { url: "./bios/seabios.bin" },
-    vga_bios: { url: "./bios/vgabios.bin" },
-    cdrom: { url: "./images/tinycore.iso" }, // Vérifie bien le nom
-    autostart: true,
-    canvas: document.getElementById("v86-canvas"),
-    // Ajoute ces deux lignes pour stabiliser l'affichage au début
-    disable_keyboard: false,
-    preserve_fifo: true
-});
-}
-
-document.getElementById('start').onclick = startVM;
+window.onload = function() {
+    const btn = document.getElementById("start");
+    
+    btn.onclick = function() {
+        console.log("Tentative de démarrage...");
+        
+        const emulator = new V86Starter({
+            // On utilise les liens officiels pour être SÛR que ça charge
+            wasm_path: "https://copy.sh/v86/build/v86.wasm",
+            bios: { url: "https://copy.sh/v86/bios/seabios.bin" },
+            vga_bios: { url: "https://copy.sh/v86/bios/vgabios.bin" },
+            
+            // On garde ton ISO locale (vérifie bien le nom du fichier !)
+            cdrom: { url: "./images/tinycore.iso", async: true },
+            
+            memory_size: 512 * 1024 * 1024,
+            autostart: true,
+            canvas: document.getElementById("v86-canvas"),
+            screen_container: document.getElementById("screen-container"),
+        });
+        
+        document.getElementById('boot-screen').style.display = 'none';
+        document.getElementById('screen-container').style.display = 'block';
+    };
+};
